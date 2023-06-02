@@ -32,7 +32,7 @@ var newCommand = &cobra.Command{
 		rootFigure.Print()
 
 		os.Mkdir(args[0], 0755)
-		hexa := hexagonal.NewHexagonal("git@github.com:saeedmdd/go-hexa.git", args[0])
+		hexa := hexagonal.NewHexagonal("https://github.com/professionsforall/hexagonal-template.git", args[0])
 
 		err = hexa.Generate(cmd.Context())
 		if err != nil {
