@@ -14,7 +14,7 @@ import (
 
 var newCommand = &cobra.Command{
 	Use:   "new",
-	Short: "generates a new hexagonal in the given directory",
+	Short: "generates a new hexagonal template in the given directory",
 	Run: func(cmd *cobra.Command, args []string) {
 		if len(args) == 0 {
 			cmd.Println(cmd.Help())
