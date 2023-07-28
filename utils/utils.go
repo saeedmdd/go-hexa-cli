@@ -1,6 +1,9 @@
 package utils
 
-import "os"
+import (
+	"os"
+	"unsafe"
+)
 
 // DirectoryExists returns whether the given file or directory exists
 func DirectoryExists(path string) (bool, error) {
@@ -12,4 +15,12 @@ func DirectoryExists(path string) (bool, error) {
 		return false, nil
 	}
 	return false, err
+}
+
+func B2S(b []byte) string {
+	return *(*string)(unsafe.Pointer(&b))
+}
+
+func S2B(s string) (b []byte) {
+	return *(*[]byte)(unsafe.Pointer(&s))
 }
