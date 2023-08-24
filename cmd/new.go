@@ -36,7 +36,10 @@ var newCommand = &cobra.Command{
 		if monolithValue {
 			branchName = "monolith"
 		}
-		os.Mkdir(args[0], 0755)
+		err = os.Mkdir(args[0], 0755)
+		if err != nil {
+			cmd.PrintErrf("error while making directory: %v", err)
+		}
 		hexa := hexagonal.NewHexagonal("https://github.com/professionsforall/hexagonal-template.git", args[0], branchName)
 
 		err = hexa.Generate(cmd.Context())

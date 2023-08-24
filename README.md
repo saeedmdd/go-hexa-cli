@@ -13,3 +13,6 @@ go-hexa-cli new <my_awesome_project> -m <my_mod_path>
 ```bash
 go-hexa-cli new url-shorter -m github.com/akbarabdi/url-shorter 
 ```
+### Source template
+
+[go hexagonal template](https://github.com/professionsforall/hexagonal-template)

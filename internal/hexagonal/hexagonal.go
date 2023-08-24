@@ -19,8 +19,7 @@ func NewHexagonal(gitUrl, path, branch string) Hexagonal {
 func (h *Hexagonal) Generate(ctx context.Context) error {
 	cloneOptions := new(git.CloneOptions)
 	cloneOptions.URL = h.gitUrl
-	kir := "adfas"
-	cloneOptions.ReferenceName = plumbing.ReferenceName(plumbing.ReferenceName(kir))
+	cloneOptions.ReferenceName = plumbing.ReferenceName(h.branch)
 	_, err := git.PlainCloneContext(ctx, h.path, false, cloneOptions)
 	if err != nil {
 		return err
