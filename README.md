@@ -9,6 +9,10 @@ go install github.com/saeedmdd/go-hexa-cli@latest
 ```bash
 go-hexa-cli new <my_awesome_project> -m <my_mod_path>
 ```
+## How to use it for monolith project
+```bash
+go-hexa-cli new <my_awesome_project> --monolith -m <my_mod_path>
+```
 ### Example
 ```bash
 go-hexa-cli new url-shorter -m github.com/akbarabdi/url-shorter 
