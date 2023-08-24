@@ -2,7 +2,6 @@ package cmd
 
 import (
 	"fmt"
-	"log"
 	"os"
 
 	"github.com/common-nighthawk/go-figure"
@@ -23,7 +22,7 @@ var newCommand = &cobra.Command{
 
 		exists, err := utils.DirectoryExists(args[0])
 		if err != nil {
-			log.Panicf("error while executing command\n")
+			cmd.Print("error while executing command\n")
 		}
 		if exists {
 			cmd.PrintErrf("directory %s already exists\n", args[0])
@@ -32,9 +31,13 @@ var newCommand = &cobra.Command{
 
 		rootFigure := figure.NewColorFigure("Go hexa", "", "cyan", true)
 		rootFigure.Print()
-
+		monolithValue, _ := cmd.Flags().GetBool("monolith")
+		branchName := "main"
+		if monolithValue {
+			branchName = "monolith"
+		}
 		os.Mkdir(args[0], 0755)
-		hexa := hexagonal.NewHexagonal("https://github.com/professionsforall/hexagonal-template.git", args[0])
+		hexa := hexagonal.NewHexagonal("https://github.com/professionsforall/hexagonal-template.git", args[0], branchName)
 
 		err = hexa.Generate(cmd.Context())
 		if err != nil {
@@ -45,9 +48,9 @@ var newCommand = &cobra.Command{
 		if err != nil {
 			panic(err)
 		}
-		value, _ := cmd.Flags().GetString("mod")
-		if value != "" {
-			modifier.ModifyFiles("./"+args[0], "github.com/professionsforall/hexagonal-template", value)
+		modValue, _ := cmd.Flags().GetString("mod")
+		if modValue != "" {
+			modifier.ModifyFiles("./"+args[0], "github.com/professionsforall/hexagonal-template", modValue)
 		}
 
 	},
@@ -61,4 +64,5 @@ func init() {
 		"m",
 		"",
 		"set the mod path for your hexagonal project")
+	newCommand.Flags().Bool("monolith", false, "to use the architecture as monolith project")
 }

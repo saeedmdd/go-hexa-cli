@@ -7,7 +7,7 @@ import (
 var rootCommand = &cobra.Command{
 	Use:   "go-hexa",
 	Short: "hexagonal cli generator",
-	Long: "go-hexa cli generates a hexagonal template written in go and fiber for http server and sqlboiler for ORM",
+	Long: "go-hexa-cli generates a hexagonal template written in go and fiber for http server and sqlboiler for ORM",
 }
 
 func Execute() error {
